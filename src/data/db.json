@@ -1,0 +1,430 @@
+{
+  "tournaments": [
+    {
+      "name": "The Iron Fist Tournament",
+      "description": "",
+      "id": 1,
+      "game": "Tekken",
+      "status": "Complete",
+      "competitors": 8,
+      "date": "Jun 2022",
+      "type": "Single Elimination",
+      "firstRound": {
+        "matches": [
+          {
+            "matchId": 1,
+            "matchName": "Match A",
+            "players": [
+              "Conor",
+              "Jason"
+            ],
+            "winner": "Conor",
+            "loser": "Jason"
+          },
+          {
+            "matchId": 2,
+            "matchName": "Match B",
+            "players": [
+              "Phillip",
+              "Donald"
+            ],
+            "winner": "Phillip",
+            "loser": "Donald"
+          },
+          {
+            "matchId": 3,
+            "matchName": "Match C",
+            "players": [
+              "Joe",
+              "George"
+            ],
+            "winner": "Joe",
+            "loser": "George"
+          },
+          {
+            "matchId": 4,
+            "matchName": "Match D",
+            "players": [
+              "Justin",
+              "Steven"
+            ],
+            "winner": "Steven",
+            "loser": "Justin"
+          }
+        ]
+      },
+      "secondRound": {
+        "matches": [
+          {
+            "matchId": 5,
+            "matchName": "Match E",
+            "players": [
+              "Conor",
+              "Steven"
+            ],
+            "winner": "Conor",
+            "loser": "Steven"
+          },
+          {
+            "matchId": 6,
+            "matchName": "Match F",
+            "players": [
+              "Phillip",
+              "Joe"
+            ],
+            "winner": "Joe",
+            "loser": "Phillip"
+          }
+        ]
+      },
+      "thirdRound": {
+        "matchId": 7,
+        "matchName": "Match G",
+        "players": [
+          "Steven",
+          "Phillip",
+          "Steven",
+          "Phillip",
+          "Steven",
+          "Phillip"
+        ],
+        "winner": "Steven",
+        "loser": "Phillip"
+      },
+      "final": {
+        "matchId": 8,
+        "matchName": "Match H",
+        "players": [
+          "Conor",
+          "Joe"
+        ],
+        "winner": "Joe",
+        "loser": "Conor"
+      },
+      "runnerUp": "Conor",
+      "thirdPlace": "Steven",
+      "champion": "Joe"
+    },
+    {
+      "name": "Defending Earth Realm",
+      "id": 2,
+      "game": "Mortal Kombat",
+      "status": "In Progress",
+      "competitors": 8,
+      "date": "Jul 2022",
+      "type": "Single Elimination",
+      "firstRound": {
+        "matches": [
+          {
+            "matchId": 1,
+            "matchName": "Match A",
+            "players": [
+              "David",
+              "Jhon"
+            ],
+            "winner": "",
+            "loser": ""
+          },
+          {
+            "matchId": 2,
+            "matchName": "Match B",
+            "players": [
+              "Nathan",
+              "Owen"
+            ],
+            "winner": "",
+            "loser": ""
+          },
+          {
+            "matchId": 3,
+            "matchName": "Match C",
+            "players": [
+              "James",
+              "Charles"
+            ],
+            "winner": "",
+            "loser": ""
+          },
+          {
+            "matchId": 4,
+            "matchName": "Match D",
+            "players": [
+              "Howard",
+              "Michael"
+            ],
+            "winner": "",
+            "loser": ""
+          }
+        ]
+      },
+      "secondRound": {
+        "matches": [
+          {
+            "matchId": 5,
+            "matchName": "Match E",
+            "players": [],
+            "winner": "",
+            "loser": ""
+          },
+          {
+            "matchId": 6,
+            "matchName": "Match F",
+            "players": [],
+            "winner": "",
+            "loser": ""
+          }
+        ]
+      },
+      "thirdRound": {
+        "matchId": 7,
+        "matchName": "Match G",
+        "players": [],
+        "winner": "",
+        "loser": ""
+      },
+      "final": {
+        "matchId": 8,
+        "matchName": "Match H",
+        "players": [],
+        "winner": "",
+        "loser": ""
+      },
+      "runnerUp": "",
+      "thirdPlace": "",
+      "champion": ""
+    },
+    {
+      "name": "World Championship",
+      "description": "Worldcup soccer mode",
+      "type": "Single Elimination",
+      "game": "FIFA 2022",
+      "date": "2022-06-30",
+      "competitors": 8,
+      "status": "In Progress",
+      "firstRound": {
+        "matches": [
+          {
+            "matchId": 1,
+            "matchName": "Match A",
+            "players": [
+              "Brazil",
+              "Germany"
+            ],
+            "winner": "",
+            "loser": ""
+          },
+          {
+            "matchId": 2,
+            "matchName": "Match B",
+            "players": [
+              "Belgium",
+              "Croatia"
+            ],
+            "winner": "",
+            "loser": ""
+          },
+          {
+            "matchId": 3,
+            "matchName": "Match C",
+            "players": [
+              "Colombia",
+              "France"
+            ],
+            "winner": "",
+            "loser": ""
+          },
+          {
+            "matchId": 4,
+            "matchName": "Match C",
+            "players": [
+              "Senegal",
+              "Argentina"
+            ],
+            "winner": "",
+            "loser": ""
+          }
+        ]
+      },
+      "secondRound": {
+        "matches": [
+          {
+            "matchId": 5,
+            "matchName": "Match E",
+            "players": [],
+            "winner": "",
+            "loser": ""
+          },
+          {
+            "matchId": 5,
+            "matchName": "Match E",
+            "players": [],
+            "winner": "",
+            "loser": ""
+          }
+        ]
+      },
+      "champion": "",
+      "runnUp": "",
+      "thirdPlace": "",
+      "thirdRound": {
+        "matchId": 7,
+        "matchName": "Match G",
+        "players": [],
+        "winner": "",
+        "loser": ""
+      },
+      "final": {
+        "matchId": 8,
+        "matchName": "Match H",
+        "players": [],
+        "winner": "",
+        "loser": ""
+      },
+      "id": 3
+    },
+    {
+      "name": "Street Fighter Tournament",
+      "description": "The Ultimate Battle",
+      "type": "Single Elimination",
+      "game": "Street Fighter",
+      "date": "2022-06-16",
+      "competitors": 8,
+      "status": "In Progress",
+      "firstRound": {
+        "matches": [
+          {
+            "matchId": 1,
+            "matchName": "Match A",
+            "players": [
+              "Chun Li",
+              "Ryu"
+            ],
+            "winner": "",
+            "loser": ""
+          },
+          {
+            "matchId": 2,
+            "matchName": "Match B",
+            "players": [
+              "Ken Masters",
+              "M. Bison"
+            ],
+            "winner": "",
+            "loser": ""
+          },
+          {
+            "matchId": 3,
+            "matchName": "Match C",
+            "players": [
+              "Guile",
+              "Dhalsim"
+            ],
+            "winner": "",
+            "loser": ""
+          },
+          {
+            "matchId": 4,
+            "matchName": "Match C",
+            "players": [
+              "Zangief",
+              "Akuma"
+            ],
+            "winner": "",
+            "loser": ""
+          }
+        ]
+      },
+      "secondRound": {
+        "matches": [
+          {
+            "matchId": 5,
+            "matchName": "Match E",
+            "players": [],
+            "winner": "",
+            "loser": ""
+          },
+          {
+            "matchId": 5,
+            "matchName": "Match E",
+            "players": [],
+            "winner": "",
+            "loser": ""
+          }
+        ]
+      },
+      "champion": "",
+      "runnUp": "",
+      "thirdPlace": "",
+      "thirdRound": {
+        "matchId": 7,
+        "matchName": "Match G",
+        "players": [],
+        "winner": "",
+        "loser": ""
+      },
+      "final": {
+        "matchId": 8,
+        "matchName": "Match H",
+        "players": [],
+        "winner": "",
+        "loser": ""
+      },
+      "id": 4
+    },
+    {
+      "name": "Mix it Up",
+      "description": "Who is the superior",
+      "type": "Single Elimination",
+      "game": "Marvel Vs Capcom",
+      "date": "2022-08-06",
+      "competitors": 8,
+      "status": "Pending",
+      "firstRound": {
+        "matches": [
+          {
+            "matchName": "",
+            "players": [],
+            "winner": "",
+            "loser": ""
+          }
+        ]
+      },
+      "secondRound": {
+        "matches": [
+          {
+            "matchId": 5,
+            "matchName": "Match E",
+            "players": [],
+            "winner": "",
+            "loser": ""
+          },
+          {
+            "matchId": 5,
+            "matchName": "Match E",
+            "players": [],
+            "winner": "",
+            "loser": ""
+          }
+        ]
+      },
+      "champion": "",
+      "runnUp": "",
+      "thirdPlace": "",
+      "thirdRound": {
+        "matchId": 7,
+        "matchName": "Match G",
+        "players": [],
+        "winner": "",
+        "loser": ""
+      },
+      "final": {
+        "matchId": 8,
+        "matchName": "Match H",
+        "players": [],
+        "winner": "",
+        "loser": ""
+      },
+      "id": 5
+    }
+  ]
+}
