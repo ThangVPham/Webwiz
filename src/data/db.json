@@ -109,7 +109,7 @@
       "name": "Defending Earth Realm",
       "id": 2,
       "game": "Mortal Kombat",
-      "status": "In Progress",
+      "status": "Complete",
       "competitors": 8,
       "date": "Jul 2022",
       "type": "Single Elimination",
@@ -119,41 +119,41 @@
             "matchId": 1,
             "matchName": "Match A",
             "players": [
-              "David",
-              "Jhon"
+              "Jhon",
+              "David"
             ],
-            "winner": "",
-            "loser": ""
+            "winner": "Jhon",
+            "loser": "David"
           },
           {
             "matchId": 2,
             "matchName": "Match B",
             "players": [
-              "Nathan",
-              "Owen"
+              "Howard",
+              "Kim"
             ],
-            "winner": "",
-            "loser": ""
+            "winner": "Kim",
+            "loser": "Howard"
           },
           {
             "matchId": 3,
             "matchName": "Match C",
             "players": [
               "James",
-              "Charles"
+              "Chuck"
             ],
-            "winner": "",
-            "loser": ""
+            "winner": "James",
+            "loser": "Chuck"
           },
           {
             "matchId": 4,
             "matchName": "Match D",
             "players": [
-              "Howard",
-              "Michael"
+              "Michael",
+              "Walter"
             ],
-            "winner": "",
-            "loser": ""
+            "winner": "Walter",
+            "loser": "Michael"
           }
         ]
       },
@@ -162,36 +162,52 @@
           {
             "matchId": 5,
             "matchName": "Match E",
-            "players": [],
-            "winner": "",
-            "loser": ""
+            "players": [
+              "Jhon",
+              "Kim"
+            ],
+            "winner": "Kim",
+            "loser": "Jhon"
           },
           {
             "matchId": 6,
             "matchName": "Match F",
-            "players": [],
-            "winner": "",
-            "loser": ""
+            "players": [
+              "James",
+              "Walter"
+            ],
+            "winner": "Walter",
+            "loser": "James"
           }
         ]
       },
       "thirdRound": {
         "matchId": 7,
         "matchName": "Match G",
-        "players": [],
-        "winner": "",
-        "loser": ""
+        "players": [
+          "Jhon",
+          "James",
+          "Jhon",
+          "James",
+          "Jhon",
+          "James"
+        ],
+        "winner": "James",
+        "loser": "Jhon"
       },
       "final": {
         "matchId": 8,
         "matchName": "Match H",
-        "players": [],
-        "winner": "",
-        "loser": ""
+        "players": [
+          "Kim",
+          "Walter"
+        ],
+        "loser": "Kim",
+        "winner": "Walter"
       },
-      "runnerUp": "",
-      "thirdPlace": "",
-      "champion": ""
+      "champion": "Walter",
+      "runnerUp": "Kim",
+      "thirdPlace": "James"
     },
     {
       "name": "World Championship",
@@ -382,7 +398,29 @@
       "firstRound": {
         "matches": [
           {
-            "matchName": "",
+            "matchId": 1,
+            "matchName": "Match A",
+            "players": [],
+            "winner": "",
+            "loser": ""
+          },
+          {
+            "matchId": 2,
+            "matchName": "Match B",
+            "players": [],
+            "winner": "",
+            "loser": ""
+          },
+          {
+            "matchId": 3,
+            "matchName": "Match C",
+            "players": [],
+            "winner": "",
+            "loser": ""
+          },
+          {
+            "matchId": 4,
+            "matchName": "Match C",
             "players": [],
             "winner": "",
             "loser": ""
@@ -425,6 +463,163 @@
         "loser": ""
       },
       "id": 5
+    },
+    {
+      "name": "Basketball Tournament",
+      "description": "",
+      "type": "Single Elimination",
+      "game": "NBA 2K21",
+      "date": "2022-07-02",
+      "competitors": 8,
+      "status": "Complete",
+      "firstRound": {
+        "matches": [
+          {
+            "matchId": 1,
+            "matchName": "Match A",
+            "players": [
+              "Golden State Warriors",
+              "LA Lakers"
+            ],
+            "winner": "Golden State Warriors",
+            "loser": "LA Lakers"
+          },
+          {
+            "matchId": 2,
+            "matchName": "Match B",
+            "players": [
+              "Boston Celtic",
+              "Miami Heat"
+            ],
+            "winner": "Miami Heat",
+            "loser": "Boston Celtic"
+          },
+          {
+            "matchId": 3,
+            "matchName": "Match C",
+            "players": [
+              "Toronto Raptors",
+              "Brooklyn Nets"
+            ],
+            "winner": "Toronto Raptors",
+            "loser": "Brooklyn Nets"
+          },
+          {
+            "matchId": 4,
+            "matchName": "Match C",
+            "players": [
+              "Dallas Mavericks",
+              "Milwaikee Bucks"
+            ],
+            "winner": "Dallas Mavericks",
+            "loser": "Milwaikee Bucks"
+          }
+        ]
+      },
+      "secondRound": {
+        "matches": [
+          {
+            "matchId": 5,
+            "matchName": "Match E",
+            "players": [
+              "Golden State Warriors",
+              "Miami Heat"
+            ],
+            "winner": "Golden State Warriors",
+            "loser": "Miami Heat"
+          },
+          {
+            "matchId": 5,
+            "matchName": "Match E",
+            "players": [
+              "Toronto Raptors",
+              "Dallas Mavericks"
+            ],
+            "winner": "Toronto Raptors",
+            "loser": "Dallas Mavericks"
+          }
+        ]
+      },
+      "champion": "Golden State Warriors",
+      "runnUp": "",
+      "thirdPlace": "Miami Heat",
+      "thirdRound": {
+        "matchId": 7,
+        "matchName": "Match G",
+        "players": [
+          "Miami Heat",
+          "Dallas Mavericks"
+        ],
+        "winner": "Miami Heat",
+        "loser": "Dallas Mavericks"
+      },
+      "final": {
+        "matchId": 8,
+        "matchName": "Match H",
+        "players": [
+          "Golden State Warriors",
+          "Toronto Raptors"
+        ],
+        "winner": "Golden State Warriors",
+        "loser": "Toronto Raptors"
+      },
+      "id": 6,
+      "runnerUp": "Toronto Raptors"
+    },
+    {
+      "name": "Hocket Tournaments",
+      "description": "None",
+      "type": "Single Elimination",
+      "game": "NHL 22",
+      "date": "2022-07-20",
+      "competitors": 8,
+      "status": "Pending",
+      "firstRound": {
+        "matches": [
+          {
+            "matchName": "",
+            "players": [],
+            "winner": "",
+            "loser": ""
+          }
+        ]
+      },
+      "secondRound": {
+        "matches": [
+          {
+            "matchId": 5,
+            "matchName": "Match E",
+            "players": [],
+            "winner": "",
+            "loser": ""
+          },
+          {
+            "matchId": 5,
+            "matchName": "Match E",
+            "players": [],
+            "winner": "",
+            "loser": ""
+          }
+        ]
+      },
+      "champion": "",
+      "runnUp": "",
+      "thirdPlace": "",
+      "thirdRound": {
+        "matchId": 7,
+        "matchName": "Match G",
+        "players": [],
+        "winner": "",
+        "loser": ""
+      },
+      "final": {
+        "matchId": 8,
+        "matchName": "Match H",
+        "players": [],
+        "winner": "",
+        "loser": ""
+      },
+      "id": 7
     }
   ]
 }

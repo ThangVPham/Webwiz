@@ -4,7 +4,8 @@ const useFetch = (url)=> {
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
 
-useEffect(()=>{       
+useEffect(()=>{    
+
             fetch(url)
                 .then((res)=>{
                     if(!res.ok){
@@ -12,11 +13,13 @@ useEffect(()=>{
                     }
                     return res.json()
                 }).then((data)=>{
+                    
                      setError(null);
                      setData(data);
                      setIsPending(false);
+
                 }).catch((e)=>{
-                
+
                     setIsPending(false);
                     setError(e.message);
             })

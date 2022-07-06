@@ -3,8 +3,8 @@ import  Icon from '../asset/tailwind-css-logo.svg';
 import useFetch from './useFetch';
 import {Link} from 'react-router-dom';
 function Home() {
-  const url='http://localhost:8000/tournaments'
-  
+
+  const url = 'http://localhost:5000/';
   const {data:tournaments, isPending, error} = useFetch(url);
   const [tabActive, setTabActive] = useState('All');
   const [filteredList,setFilteredList] = useState(tournaments);
@@ -50,12 +50,15 @@ function Home() {
 
   return (
     <div className='text-center text-white my-10 md:w-3/4 mx-auto'>
-      <h1 className='m-5 text-start font-medium text-white text-2xl'>Your Tournaments</h1>     
-
-      <Link className='bg-amber-600 rounded py-2 px-10  text-center  mx-auto text-base text-white' to='/new'>
-        Create A Tournament
-      </Link>     
-
+      <div className='bg-stone-800 banner h-80 '>
+        <div className='filter'>
+          <h1 className='mx-10 mb-20 lg:mb- text-center font-medium text-white text-5xl p-5'>Welcome to WebWiz Tournament</h1>     
+          <Link className='bg-amber-600 rounded py-2 px-10  text-center  mx-auto text-base text-white' to='/new' >
+            Create A Tournament
+          </Link> 
+        </div>
+    
+      </div>
       <div className=' my-10 w-full'>
         <ul className='flex justify-center text-slate-400'>
           <li className={tabActive==='All'?' bg-gray-600 py-0.1 rounded px-5  cursor-pointer':'py-0.1 rounded px-5  cursor-pointer'} onClick={()=>setTab('All')}>All</li>
@@ -71,8 +74,7 @@ function Home() {
         {filteredList && filteredList.map( tournament =>{
          
           return(
-            <Link to= {`/tournaments/${tournament.id}`} state={{data:tournament}} key={tournament.id}>
-              
+            <Link to= {`/tournaments/${tournament._id}`} state={{data:tournament}} key={tournament.id}>           
              <div className={tournament.champion?'bg-green-900 my-3 mx-auto w-11/12':'bg-slate-600 my-3 mx-auto w-11/12'} >
                 <div className=' flex justify-start my-1'>
                     <div className='w-1/6 sm:w-1/12 p-1 flex align-middle'>

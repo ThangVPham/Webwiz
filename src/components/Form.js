@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
-
+import {useNavigate, useLocation} from 'react-router-dom';
+import useFetch from './useFetch';
 
 function Form({navigation}) {
   const[name,setName] = useState('');
@@ -24,8 +24,6 @@ function Form({navigation}) {
       }]
     };
     tournament.secondRound ={};
-    //tournament.thirdRound={};
-    //tournament.final={};
     tournament.champion='';
     tournament.runnUp ='';
     tournament.thirdPlace = '';
@@ -60,7 +58,8 @@ function Form({navigation}) {
       winner:"",
       loser:""
   }
-    fetch('http://localhost:8000/tournaments',{
+  console.log('post');
+    fetch('http://localhost:5000/new-tournaments',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify(tournament)
@@ -131,11 +130,11 @@ function Form({navigation}) {
                 <label>Number of Competitors</label>
               </div> 
               <div className='pb-2 px-5'>
-                <input type="radio" id='4 players' name='player' value={competitors} onSelect={()=>setCompetitors(4)}/>
-                <label htmlFor="4 players"
+                <input type="radio" id='4 players' name='player' disabled value={competitors} onSelect={()=>setCompetitors(4)}/>
+                <label for = "4 players"
                 > 4 players &nbsp;&nbsp;</label>
                 <input  type="radio" id='8 players' name='player'  value={competitors} onSelect={()=>setCompetitors(8)}/>
-                <label htmlFor="8 players"> 8 players</label>              
+                <label for="8 players"> 8 players</label>              
               </div>  
               <div  className='pt-2 pb-1 px-5'>
                 <label htmlFor="">Start Time</label>

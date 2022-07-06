@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
 import Form from './components/Form';
-import Tournament from './components/Tournament';
+import Tournament from './components/Tournament1';
 import Footer from './components/Footer';
 import AddPlayers from './components/AddPlayers';
 function App() {

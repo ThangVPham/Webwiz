@@ -8,6 +8,7 @@
 
 }
 body{
+    overflow-x: hidden;
     background-color: #23262e
     ;
 }
@@ -22,3 +23,15 @@ body{
 input[type="text"] {  
     padding-left: 10px; 
 } 
+.banner{
+    background-image: url('./asset/banner.png');
+    background-size: cover;
+    background-position: 50% 20%;
+    max-height: 100%;
+
+}
+.filter{
+    background-color: rgba(0, 0, 0, 0.65);
+    width: 100%;
+    height:100%;
+}
