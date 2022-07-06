@@ -2,7 +2,6 @@
 ### `npm install`
 Download necessary packages including React, Tailwind CSS, Json-server
 
-In the project directory, you can run:
 
 ### `npm start`
 
