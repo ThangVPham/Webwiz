@@ -5,23 +5,46 @@ import useFetch from './useFetch';
 function Tournament() {
    
     const tournamentId = useParams();
-    const url = `http://localhost:5000/tournaments/${tournamentId.id}`;
-
+    const url = `https://webwiz-server.herokuapp.com/tournaments/${tournamentId.id}`;
+    
     const {data:tournament, isPending, error} = useFetch(url);
-    const [tournamentState, setTournamentState] = useState(false);
+    const [matchState, setMatchState] = useState(false);
     const color= "bg-green-600";
-    let playerCount = 0;
+    const [secondRoundButtonState, setSecondRoundButtonState] = useState(true);
+
+    const [thirdRoundButtonState,setThirdRoundButtonState] = useState(true);
+    const [finalRoundButtonState,setFinalRoundButtonState] = useState(true);
+
     useEffect(()=>{
+        setMatchState(false);
         if(!isPending){
-            tournament.firstRound.matches.forEach(match=>{
-                playerCount +=match.players.length
-            })
+        if(tournament.secondRound.matches.every((match)=>{
+            return match.players.length===2
+        }) ){
+            setSecondRoundButtonState(false);
         }
-           
-    },[isPending])
+        
+            
+        if(tournament.thirdRound.players.length===2 && !tournament.thirdRound.winner){
+            setThirdRoundButtonState(false);
+        }
+        if(tournament.thirdRound.winner){
+            setThirdRoundButtonState(true)
+        }
+        if(tournament.final.players.length===2 && !tournament.final.winner){
+            setFinalRoundButtonState(false);
+        }
+        if(tournament.final.winner){
+            setFinalRoundButtonState(true);
+        }
+        
+    }
+    
+  
+    },[isPending, matchState])
 
     const setState = ()=>{
-        setTournamentState(!tournamentState);
+        setMatchState(!matchState);
     }
 
     const[tabActive,setTabActive] = useState('Round of 8');
@@ -39,7 +62,7 @@ function Tournament() {
                 match.loser = player;
             }
         })
-       
+
         if(round==='Round of 8'){            
             if(tournament.secondRound.matches[0].players.length<2){                            
                 tournament.secondRound.matches[0].players.push(player)
@@ -47,7 +70,9 @@ function Tournament() {
             }else{
                 tournament.secondRound.matches[1].players.push(player)
             }
+
         }
+
         
         if(round==='Semi-Final'){          
             tournament.final.players.push(player);   
@@ -55,11 +80,14 @@ function Tournament() {
                 tournament.secondRound.matches.forEach(match=>{
                     tournament.thirdRound.players.push(match.loser);
                 })
-            }    
+            }
         }
 
         if(round==='3rd Place'){
             tournament.thirdPlace = player;
+            if(tournament.thirdRound.winner){
+                tournament.thirdRound.status = true
+            }
         }
 
         if(round==='Final'){
@@ -69,6 +97,7 @@ function Tournament() {
                     tournament.runnerUp = player
                 }
             })
+            tournament.final.status =true;
             tournament.status='Complete';
            
         }
@@ -78,12 +107,32 @@ function Tournament() {
             headers:{'Content-Type':'application/json'},
             body: JSON.stringify(tournament)
           }).then(()=>{   
-            setTournamentState(true)       
+            setMatchState(true)       
             console.log('Tournament updated.');
           
           }).catch((e)=>{
             console.log(e.message);
-          });    
+          }); 
+        
+        for(let i=0; i < tournament.fisrtRound.matches.length;i++){
+            if(!tournament.firstRound.matches[i].winner){
+                break;
+            }
+            tournament.firstRound.status = true;
+        }
+        for(let i=0; i<tournament.secondRound.matches.length; i++){
+            if(!tournament.secondRound.matches[i].wiiner){
+                break;
+            }
+            tournament.secondRound.status = true;
+        }
+        if(tournament.thirdRound.winner){
+            tournament.thirdRound.status=true;
+        }
+        if(tournament.final.winner){
+            tournament.final.status =true;
+        }
+
     }
 
     
@@ -130,7 +179,7 @@ function Tournament() {
         </div>
         }
 
-        {!isPending && playerCount<8 &&
+        {!isPending && tournament.status === 'Pending' &&
         
         <div className='my-2 p-3 bg-zinc-700'>
             <div className='border-l-2 border-stone-600 px-3' > 
@@ -141,7 +190,8 @@ function Tournament() {
             </div>                                                            
         </div>
         }
-        {tabActive ==='Round of 8' &&  !isPending && playerCount===8 &&
+
+        {tabActive ==='Round of 8' &&  !isPending && tournament.status!=='Pending' &&
             <div className='w-full mx-auto text-center mt-5'>
                 {tournament.firstRound.matches.map(match=>{
                     return(
@@ -162,8 +212,8 @@ function Tournament() {
                 return(
                 <div className='my-3'>                   
                     <h5>{match.matchName}</h5>
-                    <button className={match.winner===match.players[0]?'mx-auto w-2/3 p-1 h-8 bg-green-600 my-1':' mx-auto w-2/3 p-1 bg-zinc-600  h-8 my-1'} onClick={(e)=>advanceToNext(e,tabActive,match,match.players[0])} disabled={match.winner}>{match.players[0]}</button>
-                    <button className={match.winner===match.players[1]?'mx-auto w-2/3 p-1 h-8 bg-green-600':' mx-auto w-2/3 p-1 bg-zinc-600  h-8'} onClick={(e)=>advanceToNext(e,tabActive,match,match.players[1])} disabled={match.winner}>{match.players[1]}</button>
+                    <button className={match.winner===match.players[0]?'mx-auto w-2/3 p-1 h-8 bg-green-600 my-1':' mx-auto w-2/3 p-1 bg-zinc-600  h-8 my-1'} onClick={(e)=>advanceToNext(e,tabActive,match,match.players[0])} disabled={secondRoundButtonState || match.winner}>{match.players[0]}</button>
+                    <button className={match.winner===match.players[1]?'mx-auto w-2/3 p-1 h-8 bg-green-600':' mx-auto w-2/3 p-1 bg-zinc-600  h-8'} onClick={(e)=>advanceToNext(e,tabActive,match,match.players[1])} disabled={secondRoundButtonState || match.winner}>{match.players[1]}</button>
                 </div>
             )
         })}
@@ -174,8 +224,8 @@ function Tournament() {
             <div className='w-full mx-auto text-center mt-5 md:w-1/2 mx-auto'>
                 <div>
                     <h5>{tournament.thirdRound.matchName}</h5>
-                    <button className={tournament.thirdRound.winner===tournament.thirdRound.players[0]?'mx-auto w-2/3 p-1 h-8 bg-green-600 my-1':' mx-auto w-2/3 p-1 bg-zinc-600  h-8 my-1'} onClick={(e)=>advanceToNext(e,tabActive,tournament.thirdRound,tournament.thirdRound.players[0])} disabled={tournament.thirdRound.winner}>{tournament.thirdRound.players[0]}</button>
-                    <button className={tournament.thirdRound.winner===tournament.thirdRound.players[1]?'mx-auto w-2/3 p-1 h-8 bg-green-600 ':'mx-auto w-2/3 p-1 bg-zinc-600  h-8'} onClick={(e)=>advanceToNext(e,tabActive,tournament.thirdRound,tournament.thirdRound.players[1])} disabled={tournament.thirdRound.winner}>{tournament.thirdRound.players[1]}</button>
+                    <button className={tournament.thirdRound.winner===tournament.thirdRound.players[0]?'mx-auto w-2/3 p-1 h-8 bg-green-600 my-1':' mx-auto w-2/3 p-1 bg-zinc-600  h-8 my-1'} onClick={(e)=>advanceToNext(e,tabActive,tournament.thirdRound,tournament.thirdRound.players[0])} disabled={thirdRoundButtonState}>{tournament.thirdRound.players[0]}</button>
+                    <button className={tournament.thirdRound.winner===tournament.thirdRound.players[1]?'mx-auto w-2/3 p-1 h-8 bg-green-600 ':'mx-auto w-2/3 p-1 bg-zinc-600  h-8'} onClick={(e)=>advanceToNext(e,tabActive,tournament.thirdRound,tournament.thirdRound.players[1])} disabled={thirdRoundButtonState}>{tournament.thirdRound.players[1]}</button>
                 </div>                   
             </div>
         }
@@ -184,8 +234,8 @@ function Tournament() {
             <div className='w-full mx-auto text-center mt-5 md:w-1/2 mx-auto'>                   
                 <div>
                     <h5>{tournament.final.matchName}</h5>
-                    <button className={tournament.final.winner===tournament.final.players[0]?'mx-auto w-2/3 p-1 h-8 bg-green-600 my-1':' mx-auto w-2/3 p-1 bg-zinc-600  h-8 my-1'} onClick={(e)=>advanceToNext(e,tabActive,tournament.final,tournament.final.players[0])} disabled={tournament.final.winner}>{tournament.final.players[0]}</button>
-                    <button className={tournament.final.winner===tournament.final.players[1]?'mx-auto w-2/3 p-1 h-8 bg-green-600':' mx-auto w-2/3 p-1 bg-zinc-600  h-8'} onClick={(e)=>advanceToNext(e,tabActive,tournament.final,tournament.final.players[1])} disabled={tournament.final.winner}>{tournament.final.players[1]}</button>
+                    <button className={tournament.final.winner===tournament.final.players[0]?'mx-auto w-2/3 p-1 h-8 bg-green-600 my-1':' mx-auto w-2/3 p-1 bg-zinc-600  h-8 my-1'} onClick={(e)=>advanceToNext(e,tabActive,tournament.final,tournament.final.players[0])} disabled={finalRoundButtonState}>{tournament.final.players[0]}</button>
+                    <button className={tournament.final.winner===tournament.final.players[1]?'mx-auto w-2/3 p-1 h-8 bg-green-600':' mx-auto w-2/3 p-1 bg-zinc-600  h-8'} onClick={(e)=>advanceToNext(e,tabActive,tournament.final,tournament.final.players[1])} disabled={finalRoundButtonState}>{tournament.final.players[1]}</button>
                 </div>            
             </div>  
         }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import{useLocation} from 'react-router-dom';
 import useFetch from './useFetch';
 
@@ -7,8 +7,8 @@ function AddPlayers() {
     const location = useLocation();
     const tournamentId = location.state.id;
   
-    const url=`http://localhost:5000/tournaments/${tournamentId}`;
-    const url_addplayers = `http://localhost:5000/addplayers/${tournamentId}`
+    const url=`https://webwiz-server.herokuapp.com/tournaments/${tournamentId}`;
+    const url_addplayers = `https://webwiz-server.herokuapp.com/addplayers/${tournamentId}`
   
 
     const [competitorA, setCompetitorA] = useState('')
@@ -21,7 +21,11 @@ function AddPlayers() {
     const [competitord, setCompetitord] = useState('')
 
     const{data:tournament, isPending, error} = useFetch(url);
-    
+    useEffect(()=>{
+        if(!isPending){
+            console.log(tournament)
+        }
+    },[isPending])
     const addPlayers = (e)=>{
         e.preventDefault();
         

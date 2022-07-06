@@ -16,6 +16,7 @@ function Form({navigation}) {
     e.preventDefault();
     const tournament = {name, description, type, game, date, competitors, status};
     tournament.firstRound = {
+      status:false,
       matches:[{
         matchName:"",
         players:[],
@@ -23,7 +24,7 @@ function Form({navigation}) {
         loser:""
       }]
     };
-    tournament.secondRound ={};
+    tournament.secondRound ={status:false};
     tournament.champion='';
     tournament.runnUp ='';
     tournament.thirdPlace = '';
@@ -34,14 +35,16 @@ function Form({navigation}) {
           matchName:"Match E",
           players:[],
           winner:"",
-          loser:""
+          loser:"",
+          
       },
       {
           matchId:5,
           matchName:"Match E",
           players:[],
           winner:"",
-          loser:""
+          loser:"",
+          status:false
       }
   ];
   tournament.thirdRound = {
@@ -49,17 +52,19 @@ function Form({navigation}) {
       matchName:"Match G",
       players:[],
       winner:"",
-      loser:""
+      loser:"",
+      status:false
   };
   tournament.final = {
       matchId:8,
       matchName:"Match H",
       players:[],
       winner:"",
-      loser:""
+      loser:"",
+      status:false
   }
   console.log('post');
-    fetch('http://localhost:5000/new-tournaments',{
+    fetch('https://webwiz-server.herokuapp.com/new-tournaments',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify(tournament)

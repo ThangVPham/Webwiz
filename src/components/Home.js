@@ -4,7 +4,7 @@ import useFetch from './useFetch';
 import {Link} from 'react-router-dom';
 function Home() {
 
-  const url = 'http://localhost:5000/';
+  const url = 'https://webwiz-server.herokuapp.com/';
   const {data:tournaments, isPending, error} = useFetch(url);
   const [tabActive, setTabActive] = useState('All');
   const [filteredList,setFilteredList] = useState(tournaments);
