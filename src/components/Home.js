@@ -93,7 +93,7 @@ function Home() {
                           </div>      
                           <div className='text-sm flex justify-between'>
                             <div>
-                              {tournament.date}
+                              {tournament.date.slice(0,10)}
                             </div>
                             <div className='mr-1'>
                               {tournament.competitors} &nbsp; <i className="fas fa-user"></i>

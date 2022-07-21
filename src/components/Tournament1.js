@@ -43,9 +43,9 @@ function Tournament() {
   
     },[isPending, matchState])
 
-    const setState = ()=>{
-        setMatchState(!matchState);
-    }
+    // const setState = ()=>{
+    //     setMatchState(!matchState);
+    // }
 
     const[tabActive,setTabActive] = useState('Round of 8');
 
@@ -258,9 +258,14 @@ function Tournament() {
                         {tournament.thirdPlace}
                     </dir>
                 </div>
+                
                 <div className='my-5'>
+                {tournament.status==='Complete'?
                     <p>Thank you all for participating in the tournament. Good Game.</p>
-                </div>
+                    :
+                    <p>Tournament In Progress. Good Luck!</p>
+                }
+                </div>                          
             </div>  
         }
     </div>

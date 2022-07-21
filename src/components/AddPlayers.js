@@ -21,11 +21,13 @@ function AddPlayers() {
     const [competitord, setCompetitord] = useState('')
 
     const{data:tournament, isPending, error} = useFetch(url);
+    
     useEffect(()=>{
         if(!isPending){
             console.log(tournament)
         }
     },[isPending])
+
     const addPlayers = (e)=>{
         e.preventDefault();
         
@@ -85,8 +87,7 @@ function AddPlayers() {
                     </div>
                     <div>
                         <input className='bg-zinc-600 ' type="text " value={competitora} onChange={(e)=>setCompetitora(e.target.value)} required/>
-                    </div>
-                    
+                    </div>                  
                 </div>
                 <div className='mb-5'>
                     <h5>Match B</h5>
@@ -116,11 +117,8 @@ function AddPlayers() {
                     </div>
                 </div>
                 <button className='mt-5 px-5 py-2 rounded bg-blue-600' type='submit'>Add Players</button>
-            </div>
-            
+            </div>         
         </form>
-
-
     </div>
   )
 }
