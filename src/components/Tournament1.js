@@ -1,5 +1,5 @@
 import React, {useState, useEffect, } from 'react';
-import{useParams,useLocation, Link} from 'react-router-dom';
+import{useParams, Link} from 'react-router-dom';
 import  Logo from '../asset/tailwind-css-logo.svg'
 import useFetch from './useFetch';
 function Tournament() {
@@ -7,7 +7,7 @@ function Tournament() {
     const tournamentId = useParams();
     const url = `https://webwiz-server.herokuapp.com/tournaments/${tournamentId.id}`;
     
-    const {data:tournament, isPending, error} = useFetch(url);
+    const {data:tournament, isPending} = useFetch(url);
     const [matchState, setMatchState] = useState(false);
     const color= "bg-green-600";
     const [secondRoundButtonState, setSecondRoundButtonState] = useState(true);
@@ -54,15 +54,18 @@ function Tournament() {
     }
 
     const advanceToNext = (e,round, match, player)=>{
+        // Change color when winner is selected
         e.target.classList.add(color);
         match.winner = player;
         
+        // Set loser
         match.players.forEach(player=>{
             if(player!==match.winner){
                 match.loser = player;
             }
         })
 
+        // In round of 8, push winner to the Semi Final
         if(round==='Round of 8'){            
             if(tournament.secondRound.matches[0].players.length<2){                            
                 tournament.secondRound.matches[0].players.push(player)
@@ -73,7 +76,7 @@ function Tournament() {
 
         }
 
-        
+        // In Semin Final, push winner to Final and loser to 3rd Place round
         if(round==='Semi-Final'){          
             tournament.final.players.push(player);   
             if(tournament.final.players.length>=2){
@@ -83,6 +86,7 @@ function Tournament() {
             }
         }
 
+        // In 3rd Place, select tournament's 3rd place
         if(round==='3rd Place'){
             tournament.thirdPlace = player;
             if(tournament.thirdRound.winner){
@@ -90,6 +94,7 @@ function Tournament() {
             }
         }
 
+        // In Final select champion and assign loser to 2nd place
         if(round==='Final'){
             tournament.champion = player;
             tournament.final.players.forEach(player=>{
@@ -97,11 +102,13 @@ function Tournament() {
                     tournament.runnerUp = player
                 }
             })
+            // Set round complete status to true and tournament status to complete
             tournament.final.status =true;
             tournament.status='Complete';
            
         }
         
+        // Update tournament state with PUT request
         fetch(url,{
             method:'PUT',
             headers:{'Content-Type':'application/json'},
@@ -114,24 +121,25 @@ function Tournament() {
             console.log(e.message);
           }); 
         
-        for(let i=0; i < tournament.fisrtRound.matches.length;i++){
-            if(!tournament.firstRound.matches[i].winner){
-                break;
-            }
-            tournament.firstRound.status = true;
-        }
-        for(let i=0; i<tournament.secondRound.matches.length; i++){
-            if(!tournament.secondRound.matches[i].wiiner){
-                break;
-            }
-            tournament.secondRound.status = true;
-        }
-        if(tournament.thirdRound.winner){
-            tournament.thirdRound.status=true;
-        }
-        if(tournament.final.winner){
-            tournament.final.status =true;
-        }
+
+        // for(let i=0; i < tournament.fisrtRound.matches.length;i++){
+        //     if(!tournament.firstRound.matches[i].winner){
+        //         break;
+        //     }
+        //     tournament.firstRound.status = true;
+        // }
+        // for(let i=0; i<tournament.secondRound.matches.length; i++){
+        //     if(!tournament.secondRound.matches[i].wiiner){
+        //         break;
+        //     }
+        //     tournament.secondRound.status = true;
+        // }
+        // if(tournament.thirdRound.winner){
+        //     tournament.thirdRound.status=true;
+        // }
+        // if(tournament.final.winner){
+        //     tournament.final.status =true;
+        // }
 
     }
 
@@ -142,6 +150,7 @@ function Tournament() {
 
 
     <div className='sm:w-2/3 sm:mx-auto text-white mb-20'>
+        {/* Banner and information section */}
         {isPending && <div>Loading...</div>}
         {!isPending &&
         <div className='bg-zinc-700'>
@@ -167,6 +176,8 @@ function Tournament() {
                     </div>                                                  
                 </div>
             </div>
+
+            {/* Round selection tabs */}
             <div className='mx-auto bg-zinc-800'>
                     <ul className='flex w-full text-sm justify-between px-5 md:px-10 py-1'>
                         <li className={tabActive==='Round of 8'?'bg-gray-600 py-0.1 rounded px-1 cursor-pointer':'px-2 cursor-pointer'} ><button  onClick={()=>{tabSelection('Round of 8')}}>Round of 8</button> </li>
@@ -179,6 +190,7 @@ function Tournament() {
         </div>
         }
 
+        {/* If tournament doesn't have players display button to add players */}
         {!isPending && tournament.status === 'Pending' &&
         
         <div className='my-2 p-3 bg-zinc-700'>
@@ -191,6 +203,7 @@ function Tournament() {
         </div>
         }
 
+        {/* Logic for advancing players to next rounds */}
         {tabActive ==='Round of 8' &&  !isPending && tournament.status!=='Pending' &&
             <div className='w-full mx-auto text-center mt-5'>
                 {tournament.firstRound.matches.map(match=>{

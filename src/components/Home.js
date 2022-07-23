@@ -8,7 +8,7 @@ function Home() {
   const {data:tournaments, isPending, error} = useFetch(url);
   const [tabActive, setTabActive] = useState('All');
   const [filteredList,setFilteredList] = useState(tournaments);
-
+  const deleteURL ='https://webwiz-server.herokuapp.com/'
 
   useEffect(()=>{
     let array=[];
@@ -46,6 +46,13 @@ function Home() {
     setTabActive(tab);
   }
 
+  function deleteTournament(id){
+    fetch(deleteURL+id, {
+    method: 'DELETE',
+  }).then(()=>{
+    window.location.href = '/';
+  })
+  }
 
 
   return (
@@ -74,8 +81,9 @@ function Home() {
         {filteredList && filteredList.map( tournament =>{
          
           return(
+            <div className={tournament.champion?'bg-green-900 my-3 mx-auto w-11/12 z-0':'bg-slate-600 my-3 mx-auto w-11/12 z-0'} >
             <Link to= {`/tournaments/${tournament._id}`} state={{data:tournament}} key={tournament.id}>           
-             <div className={tournament.champion?'bg-green-900 my-3 mx-auto w-11/12':'bg-slate-600 my-3 mx-auto w-11/12'} >
+             
                 <div className=' flex justify-start my-1'>
                     <div className='w-1/6 sm:w-1/12 p-1 flex align-middle'>
                       <img  src={Icon} alt="icon" className='w-3/5 sm:w-52 mx-auto'/>
@@ -95,18 +103,23 @@ function Home() {
                             <div>
                               {tournament.date.slice(0,10)}
                             </div>
-                            <div className='mr-1'>
-                              {tournament.competitors} &nbsp; <i className="fas fa-user"></i>
-                            </div>                       
+                            <div className='mr-1 flex'>
+                              <div>
+                                {tournament.competitors} &nbsp; <i className="fas fa-user"></i>
+                              </div>                                                              
+                            </div>                                            
                           </div> 
-                          {tournament.champion&&<div>Winner: {tournament.champion}</div>}
-                                   
+                          {tournament.champion&&<div>Winner: {tournament.champion}</div>}                                  
                         </div>                                   
                     </div>
-                </div>                       
-              </div>
+                </div>                                     
             </Link>
-           
+            <div className='text-end p-2'>
+              <button onClick={()=>{deleteTournament(tournament._id)}}>
+                <i className="fas fa-trash-alt ml-3"></i>
+              </button>                               
+            </div> 
+            </div>
           )
         })}
      
